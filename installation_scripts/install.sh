@@ -16,7 +16,7 @@ xdg-user-dir
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 export PATH=$PATH:/home/$USER/.local/bin
 
-read -p "-- install yay as aur helper?"
+read -p "-- install yay as aur helper?" yna
 case $yna in
            [Yy]* ) git clone https://aur.archlinux.org/yay.git ~/code/aur/yay
 cd ~/code/aur/yay
