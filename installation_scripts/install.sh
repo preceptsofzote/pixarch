@@ -58,6 +58,7 @@ theme=$(dialog --stdout --inputbox "enter sudo password to cp grub theme and sdd
 if [[ $theme =~ y ]]
 then
 	        sudo cp -r $LINKDOT/boot/grub/grubel /boot/grub/
+		sudo mkdir -p /etc/sddm.conf.d/
 		sudo cp -r $LINKDOT/boot/sddm/themes/pixarch_sddm /usr/share/sddm/themes/
 		sudo sed 's/\#GRUB_THEME/GRUB_THEME=\"\/boot\/grub\/grubel\/theme.txt\"/' -i /etc/default/grub
                 su -c echo "[Theme]
