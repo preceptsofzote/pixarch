@@ -5,9 +5,9 @@ echo "Welcome to Pixarch Installation Script"
 
 export LINKDOT=${PWD%/*}
 
-sudo pacman -S  go neovim htop firefox xorg-server xorg-xinit xorg-xrdb xorg-xprop \
-		rofi exa pavucontrol tmux pamixer fzf xdg-user-dirs plank sddm \
-		feh git openssh alacritty picom polybar dash xss-lock dialog --needed
+sudo pacman -S  go vim htop firefox xorg-server xorg-xinit xorg-xrdb xorg-xprop \
+		rofi exa pavucontrol tmux pamixer fzf xdg-user-dirs plank sddm lf \
+		feh git openssh alacritty picom polybar dash xss-lock dialog dex --needed
 
 sudo ln -sfT dash /usr/bin/sh
 mkdir -p ~/.config ~/code/aur ~/code/rice
@@ -53,7 +53,13 @@ else
 	echo "-- if you didn't install i3 or this, you're on your own for a GUI."
 fi
 
-ln -sf $LINKDOT/.config/* /home/$USER/.config/
+ln -sf $LINKDOT/config/alacritty /home/$USER/.config/
+ln -sf $LINKDOT/config/lf /home/$USER/.config/
+ln -sf $LINKDOT/config/picom /home/$USER/.config/
+ln -sf $LINKDOT/config/polybar /home/$USER/.config/
+ln -sf $LINKDOT/config/rofi /home/$USER/.config/
+ln -sf $LINKDOT/config/vim /home/$USER/.config/
+
 theme=$(dialog --stdout --inputbox "enter sudo password to cp grub theme and sddm theme to correct locations and fix the config files. otherwise skip configuring both. Understand? [y/N]" 0 0) || exit 1
 if [[ $theme =~ y ]]
 then
@@ -65,4 +71,7 @@ then
 else 
 	echo "-- you're on your own for theming."
 fi
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo systemctl enable sddm
 

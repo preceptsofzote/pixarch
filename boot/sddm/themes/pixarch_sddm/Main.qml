@@ -68,30 +68,37 @@ Rectangle {
         color: "transparent"
         //visible: primaryScreen
 
+        Clock {
+            id: clock
+            anchors.margins: 5
+            anchors.top: parent.top; anchors.right: parent.right
+
+            color: "white"
+            timeFont.family: "Oxygen"
+        }
 
         Image {
             id: rectangle
             anchors.centerIn: parent
             width: Math.max(320, mainColumn.implicitWidth + 50)
             height: Math.max(320, mainColumn.implicitHeight + 50)
-	    
 
-            //source: "rectangle.png"
+            source: "rectangle.png"
 
             Column {
                 id: mainColumn
                 anchors.centerIn: parent
-                spacing: 15
+                spacing: 12
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    color: "white"
+                    color: "black"
                     verticalAlignment: Text.AlignVCenter
                     height: text.implicitHeight
-                    width: parent.width  
-                    text: "Welcome To Pixarch"
-                    //wrapMode: Text.WordWrap
-	            font.family: "Monocraft"
-		    font.pixelSize: 20
+                    width: parent.width
+                    text: textConstants.welcomeText.arg(sddm.hostName)
+                    wrapMode: Text.WordWrap
+                    font.family: "Monocraft"
+		    font.pixelSize: 24
                     elide: Text.ElideRight
                     horizontalAlignment: Text.AlignHCenter
                 }
@@ -103,7 +110,6 @@ Rectangle {
                         id: lblName
                         width: parent.width
                         text: textConstants.userName
-			color: "white"
 			font.family: "Monocraft"
                         font.bold: true
                         font.pixelSize: 12
@@ -114,12 +120,8 @@ Rectangle {
                         width: parent.width; height: 30
                         text: userModel.lastUser
 			font.family: "Monocraft"
-                        font.pixelSize: 16
-			color: Qt.rgba(0, 0, 0, 0.2)
-			borderColor: "transparent"
-			focusColor: Qt.rgba(0, 0, 0, 0.25)
-			hoverColor: Qt.rgba(0, 0, 0, 0.2)
-			textColor: "white"
+                        font.pixelSize: 14
+
                         KeyNavigation.backtab: rebootButton; KeyNavigation.tab: password
 
                         Keys.onPressed: {
@@ -138,9 +140,8 @@ Rectangle {
                         id: lblPassword
                         width: parent.width
                         text: textConstants.password
-			color: "white"
-                        font.family: "Monocraft"
-			font.bold: true
+			font.family: "Monocraft"
+                        font.bold: true
                         font.pixelSize: 12
                     }
 
@@ -151,11 +152,6 @@ Rectangle {
                         font.pixelSize: 14
 
                         KeyNavigation.backtab: name; KeyNavigation.tab: session
-			color: Qt.rgba(0, 0, 0, 0.2)
-			borderColor: "transparent"
-			focusColor: Qt.rgba(0, 0, 0, 0.25)
-			hoverColor: Qt.rgba(0, 0, 0, 0.2)
-			textColor: "white"
 
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
@@ -165,15 +161,15 @@ Rectangle {
                         }
                     }
                 }
-		
+
                 Row {
                     spacing: 4
-                    width: parent.width
+                    width: parent.width / 2
                     z: 100
-		   /*
+
                     Column {
                         z: 100
-                        width: parent.width 
+                        width: parent.width * 1.3
                         spacing : 4
                         anchors.bottom: parent.bottom
 
@@ -182,10 +178,9 @@ Rectangle {
                             width: parent.width
                             text: textConstants.session
                             wrapMode: TextEdit.WordWrap
-                            font.family: "Monocraft"
-			    font.bold: true
+			    font.family: "Monocraft"
+                            font.bold: true
                             font.pixelSize: 12
-			    color: "white"
                         }
 
                         ComboBox {
@@ -195,33 +190,40 @@ Rectangle {
                             font.pixelSize: 14
 
                             arrowIcon: "angle-down.png"
-                            color: Qt.rgba(0, 0, 0, 0.2)
-                            borderColor: "transparent"
-                            focusColor: Qt.rgba(0, 0, 0, 0.25)
-                            hoverColor: Qt.rgba(0, 0, 0, 0.2)
-                            textColor: "white"
+
                             model: sessionModel
                             index: sessionModel.lastIndex
 
                             KeyNavigation.backtab: password; KeyNavigation.tab: layoutBox
                         }
                     }
-		    
+
                     Column {
                         z: 101
                         width: parent.width * 0.7
-                        spacing : 0
+                        spacing : 4
                         anchors.bottom: parent.bottom
 
                         Text {
                             id: lblLayout
                             width: parent.width
-                            //text: textConstants.layout
+                            text: textConstants.layout
                             wrapMode: TextEdit.WordWrap
+			    font.family: "Monocraft"
                             font.bold: true
                             font.pixelSize: 12
                         }
 
+                        LayoutBox {
+                            id: layoutBox
+                            width: parent.width; height: 30
+			    font.family: "Monocraft"
+                            font.pixelSize: 14
+
+                            arrowIcon: "angle-down.png"
+
+                            KeyNavigation.backtab: session; KeyNavigation.tab: loginButton
+                        }
                     }
                 }
 
@@ -230,26 +232,23 @@ Rectangle {
                     Text {
                         id: errorMessage
                         anchors.horizontalCenter: parent.horizontalCenter
-                        //text: textConstants.prompt
-                        font.family: "Monocraft"
-			font.pixelSize: 10
+                        text: textConstants.prompt
+			font.family: "Monocraft"
+                        font.pixelSize: 10
                     }
                 }
 
                 Row {
-                    spacing: 2
+                    spacing: 4
                     anchors.horizontalCenter: parent.horizontalCenter
                     property int btnWidth: Math.max(loginButton.implicitWidth,
                                                     shutdownButton.implicitWidth,
                                                     rebootButton.implicitWidth, 80) + 8
                     Button {
                         id: loginButton
-			font.family: "Monocraft"
                         text: textConstants.login
                         width: parent.btnWidth
-			color: Qt.rgba(0, 0, 0, 0.2)
-			activeColor: Qt.rgba(0, 0, 0, 0.2)
-			pressedColor: Qt.rgba(0, 0, 0, 0.25)	
+
                         onClicked: sddm.login(name.text, password.text, sessionIndex)
 
                         KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
@@ -257,13 +256,9 @@ Rectangle {
 
                     Button {
                         id: shutdownButton
-			font.family: "Monocraft"
                         text: textConstants.shutdown
                         width: parent.btnWidth
 
-			color: Qt.rgba(0, 0, 0, 0.2)
-			activeColor: Qt.rgba(0, 0, 0, 0.2)
-			pressedColor: Qt.rgba(0, 0, 0, 0.25)	
                         onClicked: sddm.powerOff()
 
                         KeyNavigation.backtab: loginButton; KeyNavigation.tab: rebootButton
@@ -271,13 +266,9 @@ Rectangle {
 
                     Button {
                         id: rebootButton
-			font.family: "Monocraft"
                         text: textConstants.reboot
                         width: parent.btnWidth
 
-			color: Qt.rgba(0, 0, 0, 0.2)
-			activeColor: Qt.rgba(0, 0, 0, 0.2)
-			pressedColor: Qt.rgba(0, 0, 0, 0.25)	
                         onClicked: sddm.reboot()
 
                         KeyNavigation.backtab: shutdownButton; KeyNavigation.tab: name
@@ -286,6 +277,7 @@ Rectangle {
             }
         }
     }
+
     Component.onCompleted: {
         if (name.text == "")
             name.focus = true
@@ -293,9 +285,3 @@ Rectangle {
             password.focus = true
     }
 }
-
-/*
-
-
-
-*/
