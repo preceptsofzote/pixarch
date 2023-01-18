@@ -7,7 +7,7 @@ export LINKDOT=${PWD%/*}
 
 sudo pacman -S  go neovim htop firefox xorg-server xorg-xinit xorg-xrdb xorg-xprop \
 		rofi exa pavucontrol tmux pamixer fzf xdg-user-dirs plank sddm \
-		feh git openssh alacritty picom polybar dash NetworkManager xss-lock --needed
+		feh git openssh alacritty picom polybar dash xss-lock --needed
 
 sudo ln -sfT dash /usr/bin/sh
 mkdir -p ~/.config ~/code/aur ~/code/rice
