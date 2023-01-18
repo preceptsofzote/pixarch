@@ -50,7 +50,7 @@ then
 	sudo pacman -S qtile
 	ln -sf $LINKDOT/flavours/qtile /home/$USER/.config/
 else 
-	echo "-- if you didn't install i3 or this, you're on your own for a GUI.";;
+	echo "-- if you didn't install i3 or this, you're on your own for a GUI."
 fi
 
 ln -sf $LINKDOT/.config/* /home/$USER/.config/
