@@ -61,8 +61,10 @@ then
 		sudo mkdir -p /etc/sddm.conf.d/
 		sudo cp -r $LINKDOT/boot/sddm/themes/pixarch_sddm /usr/share/sddm/themes/
 		sudo sed 's/\#GRUB_THEME/GRUB_THEME=\"\/boot\/grub\/grubel\/theme.txt\"/' -i /etc/default/grub
-                su -c echo "[Theme]
-			   pixarch_sddm" >> /etc/sddm.conf.d/theme.conf
+                su -c cat >>/etc/sddm.conf.d/theme.conf <<EOF
+		[Theme]
+		pixarch_sddm
+		EOF
 else 
 	echo "-- you're on your own for theming."
 fi
