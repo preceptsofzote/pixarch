@@ -7,9 +7,8 @@ export LINKDOT=${PWD%/*}
 
 sudo pacman -S  go vim htop firefox xorg-server xorg-xinit xorg-xrdb xorg-xprop \
 		rofi exa pavucontrol tmux pamixer fzf xdg-user-dirs plank sddm lf \
-		feh git openssh alacritty picom polybar dash xss-lock dialog dex --needed --noconfirm
+		feh git openssh alacritty picom polybar xss-lock dialog dex --needed --noconfirm
 
-sudo ln -sfT dash /usr/bin/sh
 mkdir -p ~/.config ~/code/aur
 xdg-user-dir
 
@@ -23,6 +22,7 @@ echo 'Installing yay as AUR helper, adding monocraft font, and adding multilib s
         yay -S ttf-monocraft --answerdiff=None --noremovemake --pgpfetch --answerclean=None --noconfirm --asdeps
 	fc-cache -fv
 	sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+	yay -S rofi-power-menu
 
 i3=$(dialog --stdout --inputbox "Install i3? [y/N]" 0 0) || exit 1
 clear
