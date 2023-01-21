@@ -16,13 +16,13 @@ xdg-user-dir
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 export PATH=$PATH:/home/$USER/.local/bin
 
-echo 'Installing yay as AUR helper.'
+echo 'Installing yay as AUR helper, adding monocraft font, and adding multilib support'
 	git clone https://aur.archlinux.org/yay.git ~/code/aur/yay
         cd ~/code/aur/yay
         makepkg -si
         yay -S ttf-monocraft --answerdiff=None --noremovemake --pgpfetch --answerclean=None --noconfirm --asdeps
 	fc-cache -fv
-
+	sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
 i3=$(dialog --stdout --inputbox "Install i3? [y/N]" 0 0) || exit 1
 clear
