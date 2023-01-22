@@ -57,7 +57,10 @@ ln -sf $LINKDOT/config/rofi /home/$USER/.config/
 ln -sf $LINKDOT/config/vim /home/$USER/.config/
 ln -sf $LINKDOT/config/fish /home/$USER/.config/
 ln -sf $LINKDOT/home/.bashrc /home/$USER/
-
+ln -sf $LINKDOT/home/.tmux.conf /home/$USER/
+ln -sf $LINKDOT/home/.Xresources /home/$USER/
+ln -sf $LINKDOT/home/.dir_colors /home/$USER/
+ln -sf $LINKDOT/home/.Xresources /home/$USER/.Xdefaults
 theme=$(dialog --stdout --inputbox "Enter sudo password to copy Grub theme and SDDM theme to correct locations and fix the config files. Otherwise skip configuring both. Understand? [y/N]" 0 0) || exit 1
 if [[ $theme =~ y ]]
 then
