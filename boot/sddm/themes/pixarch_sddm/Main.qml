@@ -195,12 +195,11 @@ Rectangle {
 
                             arrowIcon: "angle-down.png"
 			    arrowColor: "transparent"
-                            color: "25000000"
+                            color: "#000000"
 			    textColor: "#da8548"
                             borderColor: "transparent"
                             focusColor: Qt.rgba(0, 0, 0, 0.25)
                             hoverColor: Qt.rgba(0, 0, 0, 0.2)
-                            textColor: "#da8548"
                             model: sessionModel
                             index: sessionModel.lastIndex
 
