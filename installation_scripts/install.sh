@@ -7,7 +7,7 @@ export LINKDOT=${PWD%/*}
 
 sudo pacman -S  go vim htop firefox xorg-server xorg-xinit xorg-xrdb xorg-xprop \
 		rofi exa pavucontrol tmux pamixer fzf xdg-user-dirs plank sddm lf \
-		feh git openssh alacritty picom polybar xss-lock dialog dex --needed --noconfirm
+		feh git openssh alacritty picom polybar xss-lock dialog dex xclip --needed --noconfirm
 
 mkdir -p ~/.config ~/code/aur
 xdg-user-dir
@@ -20,8 +20,10 @@ echo 'Installing yay as AUR helper, adding monocraft font, and adding multilib s
         cd ~/code/aur/yay
         makepkg -si
         yay -S ttf-monocraft --answerdiff=None --noremovemake --pgpfetch --answerclean=None --noconfirm --asdeps
+	sudo cp $LINKDOT/installation_scripts/Monocraft\ Nerd\ Font\ Complete\ Mono.ttf /usr/share/fonts/TTF/
 	fc-cache -fv
 	sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+	yay
 	yay -S rofi-power-menu
 
 i3=$(dialog --stdout --inputbox "Install i3? [y/N]" 0 0) || exit 1
@@ -53,6 +55,7 @@ ln -sf $LINKDOT/config/picom /home/$USER/.config/
 ln -sf $LINKDOT/config/polybar /home/$USER/.config/
 ln -sf $LINKDOT/config/rofi /home/$USER/.config/
 ln -sf $LINKDOT/config/vim /home/$USER/.config/
+ln -sf $LINKDOT/home/.bashrc /home/$USER/
 
 theme=$(dialog --stdout --inputbox "Enter sudo password to copy Grub theme and SDDM theme to correct locations and fix the config files. Otherwise skip configuring both. Understand? [y/N]" 0 0) || exit 1
 if [[ $theme =~ y ]]

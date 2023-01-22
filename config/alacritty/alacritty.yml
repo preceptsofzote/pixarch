@@ -1,8 +1,8 @@
 font:
   normal:
-    family: Monocraft
+    family: Monocraft Nerd Font Mono
     style: Regular
-  size: 14
+  size: 12
 
 window:
   padding:

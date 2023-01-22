@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Monocraft 12
+font pango:Monocraft Nerd Font Mono 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -35,8 +35,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 #Set resolution 1920x1080
-exec --no-startup-id xrandr --output DisplayPort-1 --mode 1920x1080 --pos 0x0
-exec --no-startup-id xrandr --output HDMI-A-0 --mode 1920x1080 --pos 1920x0
+exec --no-startup-id xrandr --output DP-2 --mode 1920x1080 --pos 0x0 --primary
+exec --no-startup-id xrandr --output HDMI-1 --mode 1920x1080 --pos 1920x0
 
 #Execute Plank Dock
 #exec --no-startup-id plank
@@ -180,7 +180,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+z exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # power menu rofi
-bindsym $mod+Shift+e exec "rofi -show power-menu -modi power-menu:~/.config/rofi-power-menu/rofi-power-menu"
+bindsym $mod+Shift+e exec "rofi -show power-menu -modi power-menu:rofi-power-menu"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
