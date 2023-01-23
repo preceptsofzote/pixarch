@@ -42,7 +42,7 @@ if [ "" = "$PKG_OK" ]; then
 fi
 	sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 	sudo sed -i "/Color/s/^#//;/Parallel/s/^#//;/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
-	sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
+	sudo sed -i "s/-j2/-j16/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
 	yay
 REQUIRED_PKG="rofi-power-menu"
 
@@ -107,12 +107,14 @@ fi
 browsel=$(dialog --stdout --inputbox "Install browsel for Private search and Web browser? [y/N]" 0 0) || exit 1
 if [[ $browsel =~ y ]]
 then
+	echo 'installing searxng'
 	cd ~/code/aur
 	yay -G searxng-git
 	cd searxng-git
 	patch PKGBUILD -i $LINKDOT/applications/browsel/searxng.patch
 	yay -S searxng-git --answerdiff=None --noremovemake --pgpfetch --answerclean=None --noconfirm --asdeps
 	makepkg -si
+	echo 'installing surf'
 	cd ~/code/aur
 	yay -G surf-git
 	cd surf-git
@@ -120,6 +122,14 @@ then
 	sed 's/https\:\/\/duckduckgo\.com/http\:\/\/127.0.0.1\:8888/' -i surf-2.0-homepage.diff
 	patch PKGBUILD -i $LINKDOT/applications/browsel/surf.patch
 	makepkg -si
+	echo 'installing tabbed'
+	cd ~/code/aur
+	yay -G tabbed-git
+	cd tabbed-git
+	cp $LINKDOT/applications/browsel/config.h .
+	makepkg -si
+	echo 'setting rofi to work for dmenu'
+	sudo ln -sf /usr/bin/rofi /usr/bin/dmenu
 else
 	echo 'Browser and Search engine not installed.'
 fi

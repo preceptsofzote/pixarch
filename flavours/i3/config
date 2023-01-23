@@ -50,6 +50,9 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 #Start polybar
 exec --no-startup-id ./.config/polybar/launch.sh
 
+#Start screen locker
+exec xset dpms 180 & xss-lock -- slock
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
