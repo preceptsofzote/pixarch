@@ -7,14 +7,13 @@ export LINKDOT=${PWD%/*}
 sudo pacman -S  go vim htop firefox xorg-server xorg-xinit xorg-xrdb xorg-xprop \
 		rofi exa pavucontrol tmux pamixer fzf xdg-user-dirs sddm lf \
 		xclip feh openssh alacritty picom polybar xss-lock dialog dex \
-		fish wget syncthing keepassxc --needed --noconfirm
+		wget syncthing keepassxc --needed --noconfirm
 
 mkdir -p ~/.config ~/code/aur
 xdg-user-dir
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 export PATH=$PATH:/home/$USER/.local/bin
-chsh -s /usr/bin/fish $USER
 
 echo 'Installing yay as AUR helper, adding monocraft font, and adding multilib support'
 REQUIRED_PKG="yay"
@@ -83,7 +82,6 @@ ln -sf $LINKDOT/config/picom /home/$USER/.config/
 ln -sf $LINKDOT/config/polybar /home/$USER/.config/
 ln -sf $LINKDOT/config/rofi /home/$USER/.config/
 ln -sf $LINKDOT/config/vim /home/$USER/.config/
-ln -sf $LINKDOT/config/fish /home/$USER/.config/
 ln -sf $LINKDOT/home/.bashrc /home/$USER/
 ln -sf $LINKDOT/home/.tmux.conf /home/$USER/
 ln -sf $LINKDOT/home/.Xresources /home/$USER/
