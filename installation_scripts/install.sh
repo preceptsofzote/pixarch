@@ -124,10 +124,14 @@ then
 	makepkg -si
 	echo 'installing tabbed'
 	cd ~/code/aur
-	yay -G tabbed-git
-	cd tabbed-git
+	yay -S tabbed-git
+	git clone https://git.suckless.org/tabbed /home/$USER/code/tabbed
+	cd /home/$USER/code/tabbed/
+	wget https://tools.suckless.org/tabbed/patches/xresources/tabbed-xresources-20210317-dabf6a2.diff
+	patch -p1 < tabbed-xresources-20210317-dabf6a2.diff
 	cp $LINKDOT/applications/browsel/config.h .
-	makepkg -si
+	make
+	sudo make clean install
 	echo 'setting rofi to work for dmenu'
 	sudo ln -sf /usr/bin/rofi /usr/bin/dmenu
 else
