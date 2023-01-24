@@ -74,6 +74,7 @@ if [[ $sway =~ y ]]
 then
 	sudo pacman -S sway swayidle swaybg xorg-xwayland clipman swaync --noconfirm
 	ln -sf $LINKDOT/flavours/sway /home/$USER/.config/
+	ln -sf $LINKDOT/config/swaync /home/$USER/.config/
         
 else
 	echo "-- you're on your own for a gui"
