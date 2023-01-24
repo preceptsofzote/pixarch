@@ -64,7 +64,7 @@ then
 	ln -sf $LINKDOT/flavours/i3 /home/$USER/.config/
         
 else
-	echo "-- moving to Qtile"
+	echo "-- moving to sway"
 fi
 
 sway=$(dialog --stdout --inputbox "Install sway? [y/N]" 0 0) || exit 1
@@ -72,7 +72,7 @@ clear
 shopt -s nocasematch
 if [[ $sway =~ y ]]
 then
-	sudo pacman -S sway swayidle swaybg xorg-xwayland --noconfirm
+	sudo pacman -S sway swayidle swaybg xorg-xwayland clipman swaync --noconfirm
 	ln -sf $LINKDOT/flavours/sway /home/$USER/.config/
         
 else

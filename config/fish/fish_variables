@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export EDITOR:vim
+SETUVAR --export MOZ_ENABLE_WAYLAND:1
 SETUVAR --export MYVIMRC:\x7e/\x2econfig/vim/\x2evimrc
 SETUVAR --export VIMINT:source\x20\x24MYVIMRC
 SETUVAR --export VISUAL:vim
