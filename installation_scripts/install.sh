@@ -67,15 +67,16 @@ else
 	echo "-- moving to Qtile"
 fi
 
-qtile=$(dialog --stdout --inputbox "Install Qtile? [y/N]" 0 0) || exit 1
+sway=$(dialog --stdout --inputbox "Install sway? [y/N]" 0 0) || exit 1
 clear
 shopt -s nocasematch
-if [[ $qtile =~ y ]]
+if [[ $sway =~ y ]]
 then
-	sudo pacman -S qtile --noconfirm
-	ln -sf $LINKDOT/flavours/qtile /home/$USER/.config/
-else 
-	echo "-- if you didn't install i3 or Qtile, you're on your own for a GUI."
+	sudo pacman -S sway swayidle swaybg xorg-xwayland --noconfirm
+	ln -sf $LINKDOT/flavours/sway /home/$USER/.config/
+        
+else
+	echo "-- you're on your own for a gui"
 fi
 
 ln -sf $LINKDOT/config/alacritty /home/$USER/.config/
