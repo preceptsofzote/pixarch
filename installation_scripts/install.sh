@@ -72,7 +72,7 @@ clear
 shopt -s nocasematch
 if [[ $sway =~ y ]]
 then
-	sudo pacman -S sway swayidle swaybg xorg-xwayland clipman swaync --noconfirm
+	sudo pacman -S sway swayidle swaylock swaybg xorg-xwayland clipman swaync --noconfirm
 	ln -sf $LINKDOT/flavours/sway /home/$USER/.config/
 	ln -sf $LINKDOT/config/swaync /home/$USER/.config/
         
